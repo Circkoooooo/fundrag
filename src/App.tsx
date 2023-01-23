@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import ElementSelection from './components/elements/ElementSelection'
 import Left from './components/layouts/Left'
 import Main from './components/layouts/Main'
 
@@ -12,7 +13,9 @@ const Background = styled.div`
 function App() {
 	return (
 		<Background>
-			<Left />
+			<Left>
+				<ElementSelection />
+			</Left>
 			<Main />
 		</Background>
 	)

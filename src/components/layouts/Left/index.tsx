@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
 	BsChevronDoubleRight as MenuCollapseRight,
 	BsChevronDoubleLeft as MenuCollapseLeft,
 } from 'react-icons/bs'
 import { CollapseButton, HeaderMenu, LeftPanel } from './styled'
 
-interface LeftProps {}
+interface LeftProps {
+	children: ReactNode
+}
 
-const Left: React.FC<LeftProps> = () => {
+const Left: React.FC<LeftProps> = ({ children }) => {
 	const [isCollapse, setIsCollapse] = useState(true)
 
 	return (
@@ -31,6 +33,7 @@ const Left: React.FC<LeftProps> = () => {
 					)}
 				</CollapseButton>
 			</HeaderMenu>
+			{children}
 		</LeftPanel>
 	)
 }
