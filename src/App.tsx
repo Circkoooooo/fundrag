@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import ElementSelection from './components/elements/ElementSelection'
 import Left from './components/layouts/Left'
 import Main from './components/layouts/Main'
+import Right from './components/layouts/Right'
 
 const Background = styled.div`
 	width: 100%;
@@ -17,6 +18,7 @@ function App() {
 				<ElementSelection />
 			</Left>
 			<Main />
+			<Right />
 		</Background>
 	)
 }

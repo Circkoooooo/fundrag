@@ -1,22 +1,5 @@
 import styled from 'styled-components'
 
-const WIDTH = ['100px', '400px']
-
-interface LeftPanelProps {
-	collapse: boolean
-}
-
-/**
- * 左面板容器
- */
-export const LeftPanel = styled.div<LeftPanelProps>`
-	width: ${(props) => (props.collapse ? WIDTH[0] : WIDTH[1])};
-	height: 100%;
-	background-color: #ffffff;
-	transition: all ease-in-out 0.15s;
-	box-shadow: 10px 0 20px rgba(0, 0, 0, 0.08);
-	z-index: 1;
-`
 /**
  * 顶部区域
  */

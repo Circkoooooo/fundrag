@@ -3,7 +3,8 @@ import {
 	BsChevronDoubleRight as MenuCollapseRight,
 	BsChevronDoubleLeft as MenuCollapseLeft,
 } from 'react-icons/bs'
-import { CollapseButton, HeaderMenu, LeftPanel } from './styled'
+import { PanelContainer } from '../sharedStyled'
+import { CollapseButton, HeaderMenu } from './styled'
 
 interface LeftProps {
 	children: ReactNode
@@ -13,7 +14,7 @@ const Left: React.FC<LeftProps> = ({ children }) => {
 	const [isCollapse, setIsCollapse] = useState(true)
 
 	return (
-		<LeftPanel collapse={isCollapse}>
+		<PanelContainer collapse={isCollapse} defaultWidth={400} minWidth={100}>
 			<HeaderMenu>
 				<CollapseButton onClick={() => setIsCollapse(!isCollapse)}>
 					{isCollapse ? (
@@ -34,7 +35,7 @@ const Left: React.FC<LeftProps> = ({ children }) => {
 				</CollapseButton>
 			</HeaderMenu>
 			{children}
-		</LeftPanel>
+		</PanelContainer>
 	)
 }
 
