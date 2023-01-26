@@ -2,6 +2,7 @@
  * 元素组件的类型
  */
 export type ElementComponentType = {
+	(): JSX.Element
 	componentName: string
 }
 

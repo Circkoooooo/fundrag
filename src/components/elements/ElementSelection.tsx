@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import elementBucket from './index'
+import { ElementComponentType } from './type'
 
 const ElementSelectionContainer = styled.div`
 	width: 100%;
@@ -30,12 +31,16 @@ const ElementDisplayAround = styled.div`
 	overflow: hidden;
 `
 
+interface ElementSelectionProps {
+	pickElement?(element: ElementComponentType): void
+}
+
 /**
  * @description 将所有可以选择的组件渲染出来
  * @author onecirckoooooo
  * @date 2023/01/26 15:11
  */
-const ElementSelection = () => {
+const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
 	const renderGroupElements = () => {
 		return elementBucket
 			.filter((item) => item.elements.length !== 0)
@@ -48,6 +53,9 @@ const ElementSelection = () => {
 								return (
 									<ElementDisplayAround
 										key={crypto.randomUUID()}
+										onClick={() =>
+											pickElement && pickElement(Element)
+										}
 									>
 										{Element.componentName}
 									</ElementDisplayAround>

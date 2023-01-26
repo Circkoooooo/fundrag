@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import ElementSelection from './components/elements/ElementSelection'
+import { ElementComponentType } from './components/elements/type'
 import Left from './components/layouts/Left'
 import Main from './components/layouts/Main'
 import Right from './components/layouts/Right'
@@ -12,12 +14,22 @@ const Background = styled.div`
 `
 
 function App() {
+	const [renderedElements, setRenderedElements] = useState<
+		ElementComponentType[]
+	>([])
+
+	const renderElement = (element: ElementComponentType) => {
+		setRenderedElements([...renderedElements, element])
+	}
+
 	return (
 		<Background>
 			<Left>
-				<ElementSelection />
+				<ElementSelection
+					pickElement={(element) => renderElement(element)}
+				/>
 			</Left>
-			<Main />
+			<Main renderedElements={renderedElements} />
 			<Right />
 		</Background>
 	)
