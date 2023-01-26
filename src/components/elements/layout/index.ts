@@ -1,7 +1,9 @@
-import React from 'react'
-import { ElementComponentType } from '../type'
+import { chunkOutput } from '../type'
+import Linear from './Linear'
 
-export default {
+const output: chunkOutput = {
 	name: '布局组件',
-	elements: [] as React.FC<ElementComponentType>[],
+	elements: [Linear],
 }
+
+export default output

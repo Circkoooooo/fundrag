@@ -30,6 +30,11 @@ const ElementDisplayAround = styled.div`
 	overflow: hidden;
 `
 
+/**
+ * @description 将所有可以选择的组件渲染出来
+ * @author onecirckoooooo
+ * @date 2023/01/26 15:11
+ */
 const ElementSelection = () => {
 	const renderGroupElements = () => {
 		return elementBucket
@@ -44,7 +49,7 @@ const ElementSelection = () => {
 									<ElementDisplayAround
 										key={crypto.randomUUID()}
 									>
-										{Element.displayName}
+										{Element.componentName}
 									</ElementDisplayAround>
 								)
 							})}

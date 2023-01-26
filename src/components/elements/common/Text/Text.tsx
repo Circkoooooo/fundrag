@@ -1,9 +1,9 @@
 import { ElementComponentType } from '../../type'
 
-const Text: React.FC<ElementComponentType> = () => {
+const Text: ElementComponentType = () => {
 	return <span>文本组件</span>
 }
 
-Text.displayName = '文本组件'
+Text.componentName = '文本组件'
 
 export default Text
