@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import ElementSelection from './components/elements/ElementSelection'
-import { ElementComponentType } from './components/elements/type'
+import { ElementFunctionComponentType } from './components/elements/type'
 import Left from './components/layouts/Left'
 import Main from './components/layouts/Main'
 import Right from './components/layouts/Right'
@@ -15,10 +15,10 @@ const Background = styled.div`
 
 function App() {
 	const [renderedElements, setRenderedElements] = useState<
-		ElementComponentType[]
+		ElementFunctionComponentType[]
 	>([])
 
-	const renderElement = (element: ElementComponentType) => {
+	const renderElement = (element: ElementFunctionComponentType) => {
 		setRenderedElements([...renderedElements, element])
 	}
 

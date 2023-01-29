@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import elementBucket from './index'
-import { ElementComponentType } from './type'
+import { ElementFunctionComponentType } from './type'
 
 const ElementSelectionContainer = styled.div`
 	width: 100%;
 `
+
 const Selection = styled.div`
 	padding: 10px;
 `
@@ -32,7 +33,7 @@ const ElementDisplayAround = styled.div`
 `
 
 interface ElementSelectionProps {
-	pickElement?(element: ElementComponentType): void
+	pickElement?(element: ElementFunctionComponentType): void
 }
 
 /**

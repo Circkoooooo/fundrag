@@ -1,6 +1,6 @@
-import { ElementComponentType } from '../../type'
+import { ElementFunctionComponentType } from '../../type'
 
-const Test: ElementComponentType = () => {
+const Test: ElementFunctionComponentType = () => {
 	return <span>测试组件</span>
 }
 

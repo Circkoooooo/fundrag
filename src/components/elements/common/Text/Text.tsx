@@ -1,6 +1,6 @@
-import { ElementComponentType } from '../../type'
+import { ElementFunctionComponentType } from '../../type'
 
-const Text: ElementComponentType = () => {
+const Text: ElementFunctionComponentType = () => {
 	return <span>文本组件</span>
 }
 

@@ -1,10 +1,10 @@
 import common from './common'
 import layout from './layout'
-import { ElementComponentType } from './type'
+import { ElementFunctionComponentType } from './type'
 
 const elementBucket: {
 	name: string
-	elements: ElementComponentType[]
+	elements: ElementFunctionComponentType[]
 }[] = [common, layout]
 
 export default elementBucket
