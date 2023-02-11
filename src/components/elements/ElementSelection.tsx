@@ -1,6 +1,7 @@
+import { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import elementBucket from './index'
-import { ElementFunctionComponentType } from './type'
+import { chunkOutput, ElementFunctionComponentType } from './type'
 
 const ElementSelectionContainer = styled.div`
 	width: 100%;
@@ -21,6 +22,10 @@ const SelectionMain = styled.div`
 	grid-gap: 10px;
 `
 
+interface ElementSelectionProps {
+	pickElement?(element: ElementFunctionComponentType): void
+}
+
 const ElementDisplayAround = styled.div`
 	padding: 10px;
 	background-color: #f0f0f0;
@@ -32,40 +37,55 @@ const ElementDisplayAround = styled.div`
 	overflow: hidden;
 `
 
-interface ElementSelectionProps {
-	pickElement?(element: ElementFunctionComponentType): void
-}
-
 /**
  * @description 将所有可以选择的组件渲染出来
  * @author onecirckoooooo
  * @date 2023/01/26 15:11
  */
 const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
+	const [needRenderElements, setNeedRenderElements] = useState<chunkOutput[]>(
+		[]
+	)
+
+	useEffect(() => {
+		elementBucket.forEach((bucketItem) => {
+			bucketItem.key = crypto.randomUUID()
+		})
+		setNeedRenderElements(
+			elementBucket
+				.filter((item) => item.elements.length !== 0) //筛选出含有子元素的容器元素
+				.map((item) => {
+					//给每一项element绑定unikey
+					item.elements.forEach((element) => {
+						element.elementKey = crypto.randomUUID()
+					})
+					return item
+				})
+		)
+	}, [])
+
 	const renderGroupElements = () => {
-		return elementBucket
-			.filter((item) => item.elements.length !== 0)
-			.map((item) => {
-				return (
-					<Selection key={crypto.randomUUID()}>
-						<SelectionName>{item.name}</SelectionName>
-						<SelectionMain>
-							{item.elements.map((Element) => {
-								return (
-									<ElementDisplayAround
-										key={crypto.randomUUID()}
-										onClick={() =>
-											pickElement && pickElement(Element)
-										}
-									>
-										{Element.componentName}
-									</ElementDisplayAround>
-								)
-							})}
-						</SelectionMain>
-					</Selection>
-				)
-			})
+		return needRenderElements.map((item) => {
+			return (
+				<Selection key={item.key}>
+					<SelectionName>{item.name}</SelectionName>
+					<SelectionMain>
+						{item.elements.map((Element) => {
+							return (
+								<ElementDisplayAround
+									key={Element.elementKey}
+									onClick={() =>
+										pickElement && pickElement(Element)
+									}
+								>
+									{Element.componentName}
+								</ElementDisplayAround>
+							)
+						})}
+					</SelectionMain>
+				</Selection>
+			)
+		})
 	}
 
 	return (

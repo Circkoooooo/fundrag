@@ -1,10 +1,7 @@
 import common from './common'
 import layout from './layout'
-import { ElementFunctionComponentType } from './type'
+import { chunkOutput } from './type'
 
-const elementBucket: {
-	name: string
-	elements: ElementFunctionComponentType[]
-}[] = [common, layout]
+const elementBucket: chunkOutput[] = [common, layout]
 
 export default elementBucket

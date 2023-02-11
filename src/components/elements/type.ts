@@ -5,6 +5,7 @@ import React from 'react'
  */
 export type ElementFunctionComponentType<P = {}> = {
 	componentName: string
+	elementKey?: string
 } & React.FC<P>
 
 /**
@@ -13,4 +14,5 @@ export type ElementFunctionComponentType<P = {}> = {
 export type chunkOutput = {
 	name: string
 	elements: ElementFunctionComponentType<any>[]
+	key?: string
 }
