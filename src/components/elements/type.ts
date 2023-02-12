@@ -1,11 +1,17 @@
 import React from 'react'
 
+export type DragComponentType = 'container' | 'inline' | never
+
+export type DefaultAppendProps = {
+	componentName: string
+	componentType: DragComponentType
+	elementKey?: string//自动生成
+}
 /**
- * 元素组件的附加类型
+ * 渲染元素的类型
  */
 export type ElementFunctionComponentType<P = {}> = {
-	componentName: string
-	elementKey?: string
+	defaultAppendProps: DefaultAppendProps
 } & React.FC<P>
 
 /**

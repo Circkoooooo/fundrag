@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { buildBaseAppendProps } from '../..'
 import { ElementFunctionComponentType } from '../../type'
 import { LayoutBaseProps } from '../types'
 
@@ -14,5 +15,5 @@ const Linear: ElementFunctionComponentType<LinearProps> = ({ children }) => {
 	return <LinearContainer>{children}</LinearContainer>
 }
 
-Linear.componentName = '线性组件'
+Linear.defaultAppendProps = buildBaseAppendProps('container', '线性组件')
 export default Linear

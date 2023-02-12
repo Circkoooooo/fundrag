@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import elementBucket from './index'
 import { chunkOutput, ElementFunctionComponentType } from './type'
@@ -57,7 +57,8 @@ const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
 				.map((item) => {
 					//给每一项element绑定unikey
 					item.elements.forEach((element) => {
-						element.elementKey = crypto.randomUUID()
+						element.defaultAppendProps.elementKey =
+							crypto.randomUUID()
 					})
 					return item
 				})
@@ -73,12 +74,12 @@ const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
 						{item.elements.map((Element) => {
 							return (
 								<ElementDisplayAround
-									key={Element.elementKey}
+									key={Element.defaultAppendProps.elementKey}
 									onClick={() =>
 										pickElement && pickElement(Element)
 									}
 								>
-									{Element.componentName}
+									{Element.defaultAppendProps.componentName}
 								</ElementDisplayAround>
 							)
 						})}
