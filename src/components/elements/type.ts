@@ -3,9 +3,9 @@ import React from 'react'
 export type DragComponentType = 'container' | 'inline' | never
 
 export type DefaultAppendProps = {
-	componentName: string
-	componentType: DragComponentType
-	elementKey?: string//自动生成
+	readonly componentName: string
+	readonly componentType: DragComponentType
+	elementKey?: string //自动生成
 }
 /**
  * 渲染元素的类型
