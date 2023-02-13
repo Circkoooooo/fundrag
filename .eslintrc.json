@@ -68,6 +68,8 @@
 		"react/prop-types": "off",
 		"spaced-comment": "off",
 		"no-param-reassign": "off",
-		"no-redeclare": "off"
+		"no-redeclare": "off",
+		"no-use-before-define": "off",
+		"no-return-assign": "off"
 	}
 }
