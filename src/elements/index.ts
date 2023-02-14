@@ -14,26 +14,35 @@ export default elementBucket
  * @param {(string | number)} componentName
  * @return {*}  {*}
  */
-export function buildBaseAppendProps(
+export function buildBaseProps(
 	componentType: DragComponentType,
 	componentName: string | number
 ): any {
-	const baseAppendProps = {
-		componentType,
-		componentName,
-	}
+	let tempProps = {}
 	/* eslint-disable */
 	switch (componentType) {
 		case 'container':
-			baseAppendProps.componentType = 'container'
+			const baseContainerProps = {
+				componentType,
+				componentName,
+				children: [],
+			}
+			baseContainerProps.componentType = 'container'
+
+			tempProps = baseContainerProps
 			break
 		case 'inline':
+			const baseAppendProps = {
+				componentType,
+				componentName,
+			}
 			baseAppendProps.componentType = 'inline'
+			tempProps = baseAppendProps
 			break
 		default:
 			break
 	}
 	/* eslint-enable */
 
-	return baseAppendProps
+	return tempProps
 }

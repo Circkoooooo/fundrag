@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { buildBaseAppendProps } from '../..'
-import { ElementFunctionComponentType } from '../../type'
+import { buildBaseProps } from '../..'
+import { DefaultContainerProps, ElementFunctionComponentType } from '../../type'
 import { LayoutBaseProps } from '../types'
 
 const LinearContainer = styled.div`
@@ -11,9 +11,12 @@ const LinearContainer = styled.div`
 
 interface LinearProps extends LayoutBaseProps {}
 
-const Linear: ElementFunctionComponentType<LinearProps> = ({ children }) => {
+const Linear: ElementFunctionComponentType<
+	DefaultContainerProps,
+	LinearProps
+> = ({ children }) => {
 	return <LinearContainer>{children}</LinearContainer>
 }
 
-Linear.defaultAppendProps = buildBaseAppendProps('container', '线性组件')
+Linear.defaultAppendProps = buildBaseProps('container', '线性组件')
 export default Linear

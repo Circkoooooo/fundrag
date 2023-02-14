@@ -7,12 +7,13 @@ export type DefaultAppendProps = {
 	readonly componentType: DragComponentType
 	elementKey?: string //自动生成
 }
-/**
- * 渲染元素的类型
- */
-export type ElementFunctionComponentType<P = {}> = {
-	defaultAppendProps: DefaultAppendProps
-} & React.FC<P>
+
+export type DefaultContainerProps = {} & DefaultAppendProps
+
+export type ElementFunctionComponentType<
+	T extends DefaultAppendProps | DefaultContainerProps = DefaultAppendProps,
+	P = {}
+> = { defaultAppendProps: T } & React.FC<P>
 
 /**
  * 每个元素块统一导出的对象类型
