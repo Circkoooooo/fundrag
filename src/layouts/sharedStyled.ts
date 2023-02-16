@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-interface LeftPanelProps {
+export interface PanelProps {
 	collapse?: boolean
 	defaultWidth?: number
 	minWidth?: number
@@ -13,7 +13,8 @@ interface LeftPanelProps {
  * minWidht: collapse为true时的宽度。默认为0px
  * collapse: undefined或者为false 的时候返回宽度defaultWidth，否则返回minWidth
  */
-export const PanelContainer = styled.div<LeftPanelProps>`
+export const PanelContainer = styled.div<PanelProps>`
+	position: relative;
 	width: ${(props) => {
 		const { collapse, defaultWidth, minWidth } = props
 		let width: number = 400
