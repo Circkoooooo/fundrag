@@ -1,8 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import {
-	BsChevronDoubleRight as MenuCollapseRight,
-	BsChevronDoubleLeft as MenuCollapseLeft,
-} from 'react-icons/bs'
+import { BsChevronDoubleRight as MenuCollapseRight, BsChevronDoubleLeft as MenuCollapseLeft } from 'react-icons/bs'
 import { PanelContainer } from '../sharedStyled'
 import { CollapseButton, HeaderMenu } from './styled'
 

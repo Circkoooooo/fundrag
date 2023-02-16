@@ -10,10 +10,7 @@ export type DefaultAppendProps = {
 
 export type DefaultContainerProps = {} & DefaultAppendProps
 
-export type ElementFunctionComponentType<
-	T extends DefaultAppendProps | DefaultContainerProps = DefaultAppendProps,
-	P = {}
-> = { defaultAppendProps: T } & React.FC<P>
+export type ElementFunctionComponentType<T extends DefaultAppendProps | DefaultContainerProps = DefaultAppendProps, P = {}> = { defaultAppendProps: T } & React.FC<P>
 
 /**
  * 每个元素块统一导出的对象类型

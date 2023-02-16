@@ -11,10 +11,7 @@ const LinearContainer = styled.div`
 
 interface LinearProps extends LayoutBaseProps {}
 
-const Linear: ElementFunctionComponentType<
-	DefaultContainerProps,
-	LinearProps
-> = ({ children }) => {
+const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> = ({ children }) => {
 	return <LinearContainer>{children}</LinearContainer>
 }
 

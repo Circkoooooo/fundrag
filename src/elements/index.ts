@@ -14,10 +14,7 @@ export default elementBucket
  * @param {(string | number)} componentName
  * @return {*}  {*}
  */
-export function buildBaseProps(
-	componentType: DragComponentType,
-	componentName: string | number
-): any {
+export function buildBaseProps(componentType: DragComponentType, componentName: string | number): any {
 	let tempProps = {}
 	/* eslint-disable */
 	switch (componentType) {

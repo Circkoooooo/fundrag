@@ -2,7 +2,7 @@ import React from 'react'
 import { MainContainer, MainScreen } from './styled'
 
 interface MainProps {
-	children: JSX.Element | JSX.Element[]
+	children?: JSX.Element | JSX.Element[] | null
 }
 
 const Main: React.FC<MainProps> = ({ children }) => {
@@ -11,6 +11,10 @@ const Main: React.FC<MainProps> = ({ children }) => {
 			<MainScreen>{children}</MainScreen>
 		</MainContainer>
 	)
+}
+
+Main.defaultProps = {
+	children: null,
 }
 
 export default Main

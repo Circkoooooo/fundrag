@@ -3,30 +3,15 @@
 		"browser": true,
 		"es2021": true
 	},
-	"extends": [
-		"airbnb",
-		"plugin:react/recommended",
-		"prettier"
-	],
+	"extends": ["airbnb", "plugin:react/recommended", "prettier"],
 	"settings": {
 		"import/parser": {
-			"@typescript-eslint/parser": [
-				".ts",
-				".tsx"
-			]
+			"@typescript-eslint/parser": [".ts", ".tsx"]
 		},
 		"import/resolver": {
 			"node": {
-				"extensions": [
-					".js",
-					".jsx",
-					"ts",
-					".tsx"
-				],
-				"moduleDirectory": [
-					"node_modules",
-					"src/"
-				],
+				"extensions": [".js", ".jsx", "ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"],
 				"import/extensions": 0
 			}
 		}
@@ -40,10 +25,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": [
-		"react",
-		"@typescript-eslint"
-	],
+	"plugins": ["react", "@typescript-eslint"],
 	"rules": {
 		"import/extensions": "off",
 		"semi": "off",
@@ -54,10 +36,7 @@
 		"import/no-unresolved": "off",
 		"react/react-in-jsx-scope": "off",
 		"jsx-quotes": "off",
-		"indent": [
-			"error",
-			"tab"
-		],
+		"indent": ["error", "tab"],
 		"linebreak-style": "off",
 		"import/no-extraneous-dependencies": "off",
 		"import/prefer-default-export": "off",

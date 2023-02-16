@@ -43,9 +43,7 @@ const ElementDisplayAround = styled.div`
  * @date 2023/01/26 15:11
  */
 const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
-	const [needRenderElements, setNeedRenderElements] = useState<chunkOutput[]>(
-		[]
-	)
+	const [needRenderElements, setNeedRenderElements] = useState<chunkOutput[]>([])
 
 	useEffect(() => {
 		elementBucket.forEach((bucketItem) => {
@@ -57,8 +55,7 @@ const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
 				.map((item) => {
 					//给每一项element绑定unikey
 					item.elements.forEach((element) => {
-						element.defaultAppendProps.elementKey =
-							crypto.randomUUID()
+						element.defaultAppendProps.elementKey = crypto.randomUUID()
 					})
 					return item
 				})
@@ -73,12 +70,7 @@ const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
 					<SelectionMain>
 						{item.elements.map((Element) => {
 							return (
-								<ElementDisplayAround
-									key={Element.defaultAppendProps.elementKey}
-									onClick={() =>
-										pickElement && pickElement(Element)
-									}
-								>
+								<ElementDisplayAround key={Element.defaultAppendProps.elementKey} onClick={() => pickElement && pickElement(Element)}>
 									{Element.defaultAppendProps.componentName}
 								</ElementDisplayAround>
 							)
@@ -89,11 +81,7 @@ const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
 		})
 	}
 
-	return (
-		<ElementSelectionContainer>
-			{renderGroupElements()}
-		</ElementSelectionContainer>
-	)
+	return <ElementSelectionContainer>{renderGroupElements()}</ElementSelectionContainer>
 }
 
 export default ElementSelection
