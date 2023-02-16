@@ -9,7 +9,7 @@ export const MainContainer = styled.div`
 `
 
 export const MainScreen = styled.div`
-	width: 1920px;
-	height: 1080px;
+	min-width: 1920px;
+	min-height: 1080px;
 	background-color: #ffffff;
 `
