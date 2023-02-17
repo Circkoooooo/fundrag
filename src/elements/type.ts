@@ -17,6 +17,6 @@ export type ElementFunctionComponentType<T extends DefaultAppendProps | DefaultC
  */
 export type chunkOutput = {
 	name: string
-	elements: ElementFunctionComponentType<any>[]
+	elements: ElementFunctionComponentType<any, any>[]
 	key?: string
 }

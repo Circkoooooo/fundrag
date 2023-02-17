@@ -30,7 +30,7 @@ const DataItem: React.FC<DataItemProps> = ({ title, value }) => {
 	return (
 		<DataItemContainer>
 			<DataItemTitle>{title === undefined ? '未命名' : title}</DataItemTitle>
-			<DataItemEdit defaultValue="空" value={value} />
+			<DataItemEdit defaultValue={value === undefined ? '空' : value} />
 		</DataItemContainer>
 	)
 }
