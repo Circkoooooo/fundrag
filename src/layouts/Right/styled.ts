@@ -11,4 +11,5 @@ export const RightCollapseButton = styled.div`
 	display: flex;
 	justify-content: center;
 	padding: 8px;
+	cursor: pointer;
 `
