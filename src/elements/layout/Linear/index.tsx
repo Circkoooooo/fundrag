@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { buildBaseProps } from '../..'
-import { DefaultContainerProps, ElementFunctionComponentType } from '../../type'
-import { LayoutBaseCSSProperties, LayoutBaseProps } from '../types'
+import { DefaultContainerProps, ElementFunctionComponentType, LayoutBaseStyleProperties } from '../../type'
+import { LayoutBaseProps } from '../types'
 
-const LinearContainer = styled.div<LayoutBaseCSSProperties>`
+const LinearContainer = styled.div<LayoutBaseStyleProperties>`
 	${(props) => {
 		return {
 			width: props.width,
@@ -17,7 +17,7 @@ const LinearContainer = styled.div<LayoutBaseCSSProperties>`
 type LinearProps = LayoutBaseProps & {}
 
 const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> = ({ children, onClickEvent }) => {
-	const [defaultCSSOption, setDefaultCSSOption] = useState<LayoutBaseCSSProperties>({
+	const [defaultCSSOptions, setDefaultCSSOptions] = useState<LayoutBaseStyleProperties>({
 		width: '100%',
 		height: '200px',
 		backgroundColor: 'purple',
@@ -25,12 +25,12 @@ const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> =
 
 	return (
 		<LinearContainer
-			{...defaultCSSOption}
+			{...defaultCSSOptions}
 			onClick={() =>
 				onClickEvent &&
 				onClickEvent({
 					type: 'layout',
-					CSSAttributes: defaultCSSOption,
+					CSSAttributes: defaultCSSOptions,
 				})
 			}
 		>
@@ -40,4 +40,5 @@ const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> =
 }
 
 Linear.defaultAppendProps = buildBaseProps('container', '线性组件')
+
 export default Linear

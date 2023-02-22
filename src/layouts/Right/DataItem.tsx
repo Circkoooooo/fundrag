@@ -1,4 +1,15 @@
+import React from 'react'
 import styled from 'styled-components'
+import { ItemAttributes } from '.'
+
+/**
+ * in
+ * 1. DataItem 组件的key和每一个组件的标题属性和单位
+ *
+ * out
+ * 2. 修改属性后回调调用对应key的组件的样式
+ *
+ */
 
 const DataItemContainer = styled.div`
 	width: 100%;
@@ -6,7 +17,7 @@ const DataItemContainer = styled.div`
 	padding: 0 8px;
 `
 
-const DataItemTitle = styled.div`
+const DataItemitemTitle = styled.div`
 	font-weight: bold;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -21,16 +32,13 @@ const DataItemEdit = styled.input`
 	border-radius: 4px;
 `
 
-interface DataItemProps {
-	title?: string
-	value?: string
-}
+type DataItemProps = ItemAttributes
 
-const DataItem: React.FC<DataItemProps> = ({ title, value }) => {
+const DataItem: React.FC<DataItemProps> = ({ itemTitle, itemValue, itemUnit, editValue }) => {
 	return (
 		<DataItemContainer>
-			<DataItemTitle>{title === undefined ? '未命名' : title}</DataItemTitle>
-			<DataItemEdit defaultValue={value === undefined ? '空' : value} />
+			<DataItemitemTitle>{itemTitle === undefined ? '未命名' : `${itemTitle} ${itemUnit ? `[${itemUnit}]` : ''}`}</DataItemitemTitle>
+			<DataItemEdit defaultValue={itemValue === undefined ? '空' : itemValue} onInput={(event) => editValue(event)} />
 		</DataItemContainer>
 	)
 }

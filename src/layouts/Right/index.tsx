@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import { BsChevronDoubleRight as MenuCollapseRight, BsChevronDoubleLeft as MenuCollapseLeft } from 'react-icons/bs'
+import { SelectElement } from '../../App'
 import { PanelContainer } from '../sharedStyled'
 import DataItem from './DataItem'
-import { RightCollapseButton } from './styled'
+import { ElementKey, RightCollapseButton } from './styled'
 
 export type ItemAttributes = {
 	key: string
-	title: string
-	value: string
+	itemTitle: string
+	itemValue: string
+	itemUnit: string
+	editValue: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
 export type RightProps = {
 	itemAttributes: ItemAttributes[]
+	selectElement: SelectElement | null
 }
 
-const Right: React.FC<RightProps> = ({ itemAttributes }) => {
+const Right: React.FC<RightProps> = ({ itemAttributes, selectElement }) => {
 	const [isCollapse, setIsCollapse] = useState(false)
 
 	return (
@@ -37,6 +41,7 @@ const Right: React.FC<RightProps> = ({ itemAttributes }) => {
 				)}
 			</RightCollapseButton>
 			<>
+				<ElementKey>容器key: {selectElement?.key}</ElementKey>
 				{itemAttributes.map((item) => (
 					<DataItem {...item} />
 				))}

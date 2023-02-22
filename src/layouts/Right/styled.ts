@@ -13,3 +13,8 @@ export const RightCollapseButton = styled.div`
 	padding: 8px;
 	cursor: pointer;
 `
+
+export const ElementKey = styled.div`
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.15);
+`

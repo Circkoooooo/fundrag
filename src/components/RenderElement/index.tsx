@@ -5,19 +5,19 @@ import { RenderedElementsType } from './types'
 interface RenderElementProps {
 	layoutElements: RenderedElementsType<DefaultContainerProps, 'container'>[]
 	appendElements: RenderedElementsType<DefaultAppendProps, 'inline'>[]
-	listenPickElementEvent: (key: string, clickEventAttributes: ClickEventAttributes) => any
+	onPickElement: (key: string, clickEventAttributes: ClickEventAttributes) => any
 }
 
 export type RefsType = {
 	renderElement(element: ElementFunctionComponentType<DefaultAppendProps | DefaultContainerProps>): void
 }
 
-const RenderElement: React.FC<RenderElementProps> = ({ layoutElements, appendElements, listenPickElementEvent }) => {
+const RenderElement: React.FC<RenderElementProps> = ({ layoutElements, appendElements, onPickElement }) => {
 	return (
 		<>
 			{layoutElements.map(({ Element, key }) => {
 				return (
-					<Element key={key} onClickEvent={(clickEventAttributes) => listenPickElementEvent && listenPickElementEvent(key, clickEventAttributes)}>
+					<Element key={key} onClickEvent={(clickEventAttributes) => onPickElement && onPickElement(key, clickEventAttributes)}>
 						{appendElements
 							.filter((item) => item.containerKey === key)
 							.map((child) => {
