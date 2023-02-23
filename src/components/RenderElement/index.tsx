@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { ClickEventAttributes } from '../../elements/layout/types'
 import { DefaultAppendProps, DefaultContainerProps, ElementFunctionComponentType } from '../../elements/type'
 import { RenderedElementsType } from './types'

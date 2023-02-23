@@ -57,10 +57,8 @@ function App() {
 		}
 	}
 
-	//TODO: 在这里调用每个容器中修改对应样式的函数
 	/**
 	 * 响应每次修改属性事件
-	 *
 	 */
 	const onEditValue = (
 		elementKey: string,
@@ -74,7 +72,7 @@ function App() {
 		preItemAttributes?: ItemAttributes[]
 	) => {
 		const { itemTitle, itemValue, itemUnit } = attrObj
-		//TODO: 实现对数据修改后的及时UI刷新
+		
 		if (type === 'container') {
 			const newLayoutElements = layoutElements.map((element) => {
 				if (element.key === elementKey) {

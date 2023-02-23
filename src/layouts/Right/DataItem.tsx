@@ -2,15 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { ItemAttributes } from '.'
 
-/**
- * in
- * 1. DataItem 组件的key和每一个组件的标题属性和单位
- *
- * out
- * 2. 修改属性后回调调用对应key的组件的样式
- *
- */
-
 const DataItemContainer = styled.div`
 	width: 100%;
 	margin: 8px 0 16px 0;
