@@ -57,10 +57,8 @@ function App() {
 		}
 	}
 
-	//TODO: 在这里调用每个容器中修改对应样式的函数
 	/**
 	 * 响应每次修改属性事件
-	 *
 	 */
 	const onEditValue = (
 		elementKey: string,
