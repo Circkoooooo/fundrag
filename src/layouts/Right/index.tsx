@@ -10,7 +10,8 @@ export type ItemAttributes = {
 	itemTitle: string
 	itemValue: string
 	itemUnit: string
-	editValue: (event: React.FormEvent<HTMLInputElement>) => void
+	editValue: (event: React.FormEvent<HTMLInputElement>, preItemAttributes?: ItemAttributes[]) => void
+	preItemAttributes?: ItemAttributes[]
 }
 
 export type RightProps = {
@@ -43,7 +44,7 @@ const Right: React.FC<RightProps> = ({ itemAttributes, selectElement }) => {
 			<>
 				<ElementKey>容器key: {selectElement?.key}</ElementKey>
 				{itemAttributes.map((item) => (
-					<DataItem {...item} />
+					<DataItem {...item} editValue={(event) => item.editValue(event, itemAttributes)} preItemAttributes={itemAttributes} />
 				))}
 			</>
 		</PanelContainer>

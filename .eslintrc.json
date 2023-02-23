@@ -73,6 +73,7 @@
 		"no-return-assign": "off",
 		"react/jsx-props-no-spreading": "off",
 		"react/jsx-key": "off",
-		"no-nested-ternary": "off"
+		"no-nested-ternary": "off",
+		"no-unused-expressions": "off"
 	}
 }

@@ -36,12 +36,22 @@ function App() {
 				key: crypto.randomUUID(),
 				Element: element,
 				containerKey: selectElement?.key, //寻找一个容器的key
+				styleProperties: {
+					width: '',
+					height: '',
+					backgroundColor: '',
+				},
 			}
 			setAppendElements([...appendElements, appendElement])
 		} else if (elementType === 'container') {
 			const layoutElement: RenderedElementsType<DefaultContainerProps, 'container'> = {
 				key: crypto.randomUUID(),
 				Element: element,
+				styleProperties: {
+					width: '100%',
+					height: '200px',
+					backgroundColor: 'blue',
+				},
 			}
 			setLayoutElements([...layoutElements, layoutElement])
 		}
@@ -51,43 +61,47 @@ function App() {
 	/**
 	 * 响应每次修改属性事件
 	 *
-	 * @param key 元素的key
-	 * @param itemTitle
-	 * @param itemValue
-	 * @param event
 	 */
 	const onEditValue = (
 		elementKey: string,
+		type: 'container' | 'inline',
 		attrObj: {
 			itemTitle: string
 			itemValue: string
 			itemUnit: string
 		},
-		event: React.FormEvent<HTMLInputElement>
+		event: React.FormEvent<HTMLInputElement>,
+		preItemAttributes?: ItemAttributes[]
 	) => {
 		const { itemTitle, itemValue, itemUnit } = attrObj
+		//TODO: 实现对数据修改后的及时UI刷新
+		if (type === 'container') {
+			const newLayoutElements = layoutElements.map((element) => {
+				if (element.key === elementKey) {
+					;(element.styleProperties as any)[itemTitle] = event.currentTarget.value + itemUnit
+				}
+				return element
+			})
 
-		console.log({
-			elementKey,
-			itemTitle,
-			itemValue,
-			itemUnit,
-			target: event.currentTarget,
-		})
+			if (preItemAttributes) {
+				setItemAttributes(preItemAttributes)
+			}
+			setLayoutElements(newLayoutElements)
+		}
 	}
 
 	/**
 	 * 响应点击渲染过的元素后的事件
 	 *
 	 */
-	const onPickElement = (elementKey: string, clickEventsAttribute: ClickEventAttributes) => {
+	const onPickElement = (elementKey: string, type: 'container' | 'inline', clickEventsAttribute: ClickEventAttributes) => {
 		setSelectElement({
 			type: clickEventsAttribute.type,
 			key: elementKey,
 		})
 
-		if (clickEventsAttribute.CSSAttributes !== undefined) {
-			const items: ItemAttributes[] = Object.entries(clickEventsAttribute.CSSAttributes).map((item, index) => {
+		if (clickEventsAttribute.styleProperties !== undefined) {
+			const items: ItemAttributes[] = Object.entries(clickEventsAttribute.styleProperties).map((item, index) => {
 				const pureValue = (item[1] as string).match(/\d+/g) //不附带属性的值
 				const pureUnit = (item[1] as string).match(/\D+/g) //属性的单位
 
@@ -100,16 +114,19 @@ function App() {
 					itemTitle,
 					itemValue,
 					itemUnit,
-					editValue: (event: React.FormEvent<HTMLInputElement>) =>
+					editValue: (event: React.FormEvent<HTMLInputElement>, preItemAttributes?: ItemAttributes[]) => {
 						onEditValue(
 							elementKey,
+							type,
 							{
 								itemTitle: item[0],
 								itemValue,
 								itemUnit,
 							},
-							event
-						),
+							event,
+							preItemAttributes
+						)
+					},
 				}
 			})
 			setItemAttributes(items)
@@ -122,7 +139,10 @@ function App() {
 				<ElementSelection pickElement={(element) => renderElement(element)} />
 			</Left>
 			<Main>
-				<RenderElement {...{ layoutElements, appendElements }} onPickElement={(key: string, clickEventAttributes: ClickEventAttributes) => onPickElement(key, clickEventAttributes)} />
+				<RenderElement
+					{...{ layoutElements, appendElements }}
+					onPickElement={(key: string, type: 'container' | 'inline', clickEventAttributes: ClickEventAttributes) => onPickElement(key, type, clickEventAttributes)}
+				/>
 			</Main>
 			<Right {...{ itemAttributes, selectElement }} />
 		</Background>

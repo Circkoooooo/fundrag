@@ -34,11 +34,22 @@ const DataItemEdit = styled.input`
 
 type DataItemProps = ItemAttributes
 
-const DataItem: React.FC<DataItemProps> = ({ itemTitle, itemValue, itemUnit, editValue }) => {
+const DataItem: React.FC<DataItemProps> = ({ itemTitle, itemValue, itemUnit, editValue, preItemAttributes }) => {
+	const preEditValue = (event: React.FormEvent<HTMLInputElement>) => {
+		preItemAttributes?.map((attr) => {
+			//update value
+			if (itemTitle === attr.itemTitle) {
+				attr.itemValue = event.currentTarget.value
+			}
+			return attr
+		})
+		editValue(event, preItemAttributes)
+	}
+
 	return (
 		<DataItemContainer>
 			<DataItemitemTitle>{itemTitle === undefined ? '未命名' : `${itemTitle} ${itemUnit ? `[${itemUnit}]` : ''}`}</DataItemitemTitle>
-			<DataItemEdit defaultValue={itemValue === undefined ? '空' : itemValue} onInput={(event) => editValue(event)} />
+			<DataItemEdit defaultValue={itemValue === undefined ? '空' : itemValue} onInput={(event) => preEditValue(event)} />
 		</DataItemContainer>
 	)
 }

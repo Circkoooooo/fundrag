@@ -16,21 +16,15 @@ const LinearContainer = styled.div<LayoutBaseStyleProperties>`
 
 type LinearProps = LayoutBaseProps & {}
 
-const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> = ({ children, onClickEvent }) => {
-	const [defaultCSSOptions, setDefaultCSSOptions] = useState<LayoutBaseStyleProperties>({
-		width: '100%',
-		height: '200px',
-		backgroundColor: 'purple',
-	})
-
+const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> = ({ children, onClickEvent, styleProperties }) => {
 	return (
 		<LinearContainer
-			{...defaultCSSOptions}
+			{...styleProperties}
 			onClick={() =>
 				onClickEvent &&
 				onClickEvent({
 					type: 'layout',
-					CSSAttributes: defaultCSSOptions,
+					styleProperties,
 				})
 			}
 		>

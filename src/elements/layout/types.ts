@@ -7,7 +7,7 @@ export type ClickEventElementType = {
 
 export type ClickEventAttributes = {
 	type: ClickEventElementType['layout']
-	CSSAttributes?: {
+	styleProperties?: {
 		[key in keyof LayoutBaseStyleProperties]: LayoutBaseStyleProperties[key]
 	}
 }
@@ -18,4 +18,5 @@ export type ClickEventAttributes = {
 export interface LayoutBaseProps {
 	children?: ReactNode
 	onClickEvent?: (clickEventAttributes: ClickEventAttributes) => any
+	styleProperties: LayoutBaseStyleProperties
 }
