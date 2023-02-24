@@ -44,22 +44,17 @@ function App() {
 			}
 			setAppendElements([...appendElements, appendElement])
 		} else if (elementType === 'container') {
+			console.log(element.defaultAppendProps)
 			const layoutElement: RenderedElementsType<DefaultContainerProps, 'container'> = {
 				key: crypto.randomUUID(),
 				Element: element,
-				styleProperties: {
-					width: '100%',
-					height: '200px',
-					backgroundColor: 'blue',
-				},
+				styleProperties: element.defaultAppendProps.defaultStyleProperties,
 			}
 			setLayoutElements([...layoutElements, layoutElement])
 		}
 	}
 
-	/**
-	 * 响应每次修改属性事件
-	 */
+	// 响应每次修改属性事件
 	const onEditValue = (
 		elementKey: string,
 		type: 'container' | 'inline',
@@ -71,8 +66,7 @@ function App() {
 		event: React.FormEvent<HTMLInputElement>,
 		preItemAttributes?: ItemAttributes[]
 	) => {
-		const { itemTitle, itemValue, itemUnit } = attrObj
-		
+		const { itemTitle, itemUnit } = attrObj
 		if (type === 'container') {
 			const newLayoutElements = layoutElements.map((element) => {
 				if (element.key === elementKey) {

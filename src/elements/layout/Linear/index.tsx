@@ -32,6 +32,10 @@ const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> =
 	)
 }
 
-Linear.defaultAppendProps = buildBaseProps('container', '线性组件')
+Linear.defaultAppendProps = buildBaseProps('container', '线性组件', {
+	width: '100%',
+	height: '200px',
+	backgroundColor: 'blue',
+})
 
 export default Linear
