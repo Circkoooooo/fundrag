@@ -8,7 +8,7 @@ const DataItemContainer = styled.div`
 	padding: 0 8px;
 `
 
-const DataItemitemTitle = styled.div`
+const DataItemTitle = styled.div`
 	font-weight: bold;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -59,7 +59,7 @@ const DataItem: React.FC<DataItemProps> = ({ itemTitle, itemValue, itemUnit, edi
 
 	return (
 		<DataItemContainer>
-			<DataItemitemTitle>{itemTitle === undefined ? '未命名' : `${itemTitle} ${itemUnit ? `[${itemUnit}]` : ''}`}</DataItemitemTitle>
+			<DataItemTitle>{itemTitle === undefined ? '未命名' : `${itemTitle} ${itemUnit ? `[${itemUnit}]` : ''}`}</DataItemTitle>
 			<DataItemEdit value={currentItemValue === undefined ? '空' : currentItemValue} onChange={(event) => preEditValue(event)} />
 		</DataItemContainer>
 	)

@@ -77,10 +77,7 @@ function App() {
 		}
 	}
 
-	/**
-	 * 响应点击渲染过的元素后的事件
-	 *
-	 */
+	// 响应点击渲染过的元素后的事件
 	const onPickElement = (elementKey: string, type: 'container' | 'inline', clickEventsAttribute: ClickEventAttributes) => {
 		setSelectElement({
 			type: clickEventsAttribute.type,
