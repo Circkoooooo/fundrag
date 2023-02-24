@@ -7,7 +7,7 @@ const elementBucket: chunkOutput[] = [common, layout]
 export default elementBucket
 
 // build a base props for drag component, the prop will not include the automally create props such as unique key.
-export function buildBaseProps(componentType: DragComponentType, componentName: string | number, defaultStyleProperties: LayoutBaseStyleProperties | InlineBaseStyleProperties): any {
+export function buildBaseProps(componentType: DragComponentType, componentName: string | number): any {
 	let tempProps = {}
 	/* eslint-disable */
 	switch (componentType) {
@@ -16,7 +16,7 @@ export function buildBaseProps(componentType: DragComponentType, componentName: 
 				componentType,
 				componentName,
 				children: [],
-				defaultStyleProperties,
+				// defaultStyleProperties,
 			}
 			baseContainerProps.componentType = 'container'
 

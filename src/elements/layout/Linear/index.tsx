@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useRef, useState } from 'react'
 import { buildBaseProps } from '../..'
 import { DefaultContainerProps, ElementFunctionComponentType, LayoutBaseStyleProperties } from '../../type'
 import { LayoutBaseProps } from '../types'
@@ -15,27 +16,25 @@ const LinearContainer = styled.div<LayoutBaseStyleProperties>`
 
 type LinearProps = LayoutBaseProps & {}
 
-const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> = ({ children, onClickEvent, styleProperties }) => {
+const Linear: ElementFunctionComponentType<DefaultContainerProps, LinearProps> = ({ children, onClickEvent, defaultStyleProperties }) => {
+	const styleProperties = useRef(defaultStyleProperties)
+
 	return (
 		<LinearContainer
-			{...styleProperties}
-			onClick={() =>
+			{...styleProperties.current}
+			onClick={() => {
 				onClickEvent &&
-				onClickEvent({
-					type: 'layout',
-					styleProperties,
-				})
-			}
+					onClickEvent({
+						type: 'container',
+						styleProperties: styleProperties.current,
+					})
+			}}
 		>
 			{children}
 		</LinearContainer>
 	)
 }
 
-Linear.defaultAppendProps = buildBaseProps('container', '线性组件', {
-	width: '100%',
-	height: '200px',
-	backgroundColor: 'blue',
-})
+Linear.defaultAppendProps = buildBaseProps('container', '线性组件')
 
 export default Linear

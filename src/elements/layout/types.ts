@@ -1,15 +1,14 @@
 import { ReactNode } from 'react'
 import { LayoutBaseStyleProperties } from '../type'
 
-export type ClickEventElementType = {
-	layout: 'layout'
-}
+export type ClickEventElementType = 'container'
 
+export type StyleProperties = {
+	[key in keyof LayoutBaseStyleProperties]: LayoutBaseStyleProperties[key]
+}
 export type ClickEventAttributes = {
-	type: ClickEventElementType['layout']
-	styleProperties?: {
-		[key in keyof LayoutBaseStyleProperties]: LayoutBaseStyleProperties[key]
-	}
+	type: ClickEventElementType
+	styleProperties?: StyleProperties
 }
 
 /**
@@ -18,5 +17,5 @@ export type ClickEventAttributes = {
 export interface LayoutBaseProps {
 	children?: ReactNode
 	onClickEvent?: (clickEventAttributes: ClickEventAttributes) => any
-	styleProperties: LayoutBaseStyleProperties
+	defaultStyleProperties: LayoutBaseStyleProperties
 }

@@ -5,7 +5,7 @@ import { RenderedElementsType } from './types'
 interface RenderElementProps {
 	layoutElements: RenderedElementsType<DefaultContainerProps, 'container'>[]
 	appendElements: RenderedElementsType<DefaultAppendProps, 'inline'>[]
-	onPickElement: (key: string, type: 'container' | 'inline', clickEventAttributes: ClickEventAttributes) => any
+	onPickElement: (key: string, clickEventAttributes: ClickEventAttributes) => any
 }
 
 export type RefsType = {
@@ -20,9 +20,9 @@ const RenderElement: React.FC<RenderElementProps> = ({ layoutElements, appendEle
 					<Element
 						{...{
 							key,
-							styleProperties,
+							defaultStyleProperties: styleProperties,
 						}}
-						onClickEvent={(clickEventAttributes) => onPickElement && onPickElement(key, 'container', clickEventAttributes)}
+						onClickEvent={(clickEventAttributes) => onPickElement && onPickElement(key, clickEventAttributes)}
 					>
 						{appendElements
 							.filter((item) => item.containerKey === key)

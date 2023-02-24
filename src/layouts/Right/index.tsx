@@ -3,7 +3,7 @@ import { BsChevronDoubleRight as MenuCollapseRight, BsChevronDoubleLeft as MenuC
 import { SelectElement } from '../../App'
 import { PanelContainer } from '../sharedStyled'
 import DataItem from './DataItem'
-import { ElementKey, RightCollapseButton } from './styled'
+import { DataItemContainer, DataItemEdit, DataItemTitle, ElementKey, RightCollapseButton } from './styled'
 
 export type ItemUnit = 'px' | '%' | ''
 
@@ -12,16 +12,22 @@ export type ItemAttributes = {
 	itemTitle: string
 	itemValue: string
 	itemUnit: ItemUnit
-	editValue: (event: React.FormEvent<HTMLInputElement>, preItemAttributes?: ItemAttributes[]) => void
 	preItemAttributes?: ItemAttributes[]
 }
 
 export type RightProps = {
 	itemAttributes: ItemAttributes[]
 	selectElement: SelectElement | null
+	editValue: (
+		event: React.FormEvent<HTMLInputElement>,
+		itemObj: { itemTitle: string; itemValue: string; itemUnit: ItemUnit },
+		preItemAttributes: ItemAttributes[],
+		elementKey?: string,
+		elementType?: 'container' | 'inline'
+	) => void
 }
 
-const Right: React.FC<RightProps> = ({ itemAttributes, selectElement }) => {
+const Right: React.FC<RightProps> = ({ itemAttributes, selectElement, editValue }) => {
 	const [isCollapse, setIsCollapse] = useState(false)
 
 	return (
@@ -46,7 +52,13 @@ const Right: React.FC<RightProps> = ({ itemAttributes, selectElement }) => {
 			<>
 				<ElementKey>容器key: {selectElement?.key}</ElementKey>
 				{itemAttributes.map((item) => (
-					<DataItem {...item} editValue={(event) => item.editValue(event, itemAttributes)} preItemAttributes={itemAttributes} />
+					<>
+						<DataItem
+							{...item}
+							onEditValue={(event, itemObj, preItemAttributes) => editValue(event, itemObj, itemAttributes, selectElement?.key, selectElement?.type)}
+							preItemAttributes={itemAttributes}
+						/>
+					</>
 				))}
 			</>
 		</PanelContainer>
