@@ -3,13 +3,15 @@ import { CSSProperties } from 'styled-components'
 
 export type DragComponentType = 'container' | 'inline' | never
 
-export type DefaultAppendProps = {
+export type DefaultBaseProps = {
+	elementKey?: string //自动生成
 	readonly componentName: string
 	readonly componentType: DragComponentType
-	elementKey?: string //自动生成
+	defaultStyleProperties: LayoutBaseStyleProperties | InlineBaseStyleProperties
 }
+export type DefaultAppendProps = {} & DefaultBaseProps
 
-export type DefaultContainerProps = {} & DefaultAppendProps
+export type DefaultContainerProps = {} & DefaultBaseProps
 
 export type ElementFunctionComponentType<T extends DefaultAppendProps | DefaultContainerProps = DefaultAppendProps, P = {}> = { defaultAppendProps: T } & React.FC<P>
 
