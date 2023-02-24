@@ -5,11 +5,13 @@ import { PanelContainer } from '../sharedStyled'
 import DataItem from './DataItem'
 import { ElementKey, RightCollapseButton } from './styled'
 
+export type ItemUnit = 'px' | '%' | ''
+
 export type ItemAttributes = {
 	key: string
 	itemTitle: string
 	itemValue: string
-	itemUnit: string
+	itemUnit: ItemUnit
 	editValue: (event: React.FormEvent<HTMLInputElement>, preItemAttributes?: ItemAttributes[]) => void
 	preItemAttributes?: ItemAttributes[]
 }

@@ -7,7 +7,7 @@ import { ClickEventAttributes, ClickEventElementType } from './elements/layout/t
 import { DefaultAppendProps, DefaultContainerProps, ElementFunctionComponentType } from './elements/type'
 import Left from './layouts/Left'
 import Main from './layouts/Main'
-import Right, { ItemAttributes } from './layouts/Right'
+import Right, { ItemAttributes, ItemUnit } from './layouts/Right'
 
 const Background = styled.div`
 	width: 100%;
@@ -94,7 +94,7 @@ function App() {
 
 				const itemTitle = item[0]
 				const itemValue = pureValue === null ? ((item[1] as string) === null ? '0' : (item[1] as string)) : pureValue[0]
-				const itemUnit = pureUnit === null ? 'px' : pureValue === null ? '' : pureUnit[0]
+				const itemUnit: ItemUnit = pureUnit === null ? 'px' : pureValue === null ? '' : (pureUnit[0] as ItemUnit)
 
 				return {
 					key: index.toString(),
