@@ -40,6 +40,7 @@ function App() {
 			}
 			setAppendElements([...appendElements, appendElement])
 		} else if (elementType === 'container') {
+			console.log(element.defaultAppendProps)
 			const layoutElement: RenderedElementsType<DefaultContainerProps, 'container'> = {
 				key: crypto.randomUUID(),
 				Element: element,
