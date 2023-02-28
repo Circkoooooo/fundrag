@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import RenderElement from './components/RenderElement'
-import { RenderedElementsType } from './components/RenderElement/types'
-import ElementSelection from './elements/ElementSelection'
-import { ClickEventAttributes, ClickEventElementType, StyleProperties } from './elements/layout/types'
-import { DefaultAppendProps, DefaultContainerProps, ElementFunctionComponentType } from './elements/type'
-import Left from './layouts/Left'
-import Main from './layouts/Main'
-import Right, { ItemAttributes, ItemUnit } from './layouts/Right'
+import RenderElement from './views/components/RenderElement'
+import { RenderedElementsType } from './views/components/RenderElement/types'
+import ElementSelection from './views/elements/ElementSelection'
+import { ClickEventAttributes, ClickEventElementType, StyleProperties } from './views/elements/layout/types'
+import { DefaultAppendProps, DefaultContainerProps, ElementFunctionComponentType } from './views/elements/type'
+import Left from './views/layouts/Left'
+import Main from './views/layouts/Main'
+import Right, { ItemAttributes, ItemUnit } from './views/layouts/Right'
 
 const Background = styled.div`
 	width: 100%;
