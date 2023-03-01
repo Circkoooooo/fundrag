@@ -34,7 +34,7 @@ const childrenConfig = () => {
 export function createDragComponent(realNode: RealNode, config: CreateDragComponentConfig): DragComponent {
 	const { isContainer, componentName } = config
 
-	if (config.isContainer) {
+	if (config.isContainer === undefined) {
 		console.warn("has not assign a value to 'isContainer', it will be the default value: false")
 	}
 
