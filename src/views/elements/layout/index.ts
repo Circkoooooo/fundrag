@@ -1,9 +1,7 @@
-import { chunkOutput } from '../type'
-import Linear from './Linear'
+import Linear from './Linear/Linear'
+import { buildComponentPackage } from '../index'
 
-const output: chunkOutput = {
-	name: '布局组件',
-	elements: [Linear],
-}
-
-export default output
+export default buildComponentPackage({
+	packageName: '布局组件',
+	components: [Linear],
+})

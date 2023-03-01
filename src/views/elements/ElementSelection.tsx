@@ -1,11 +1,6 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import elementBucket from './index'
-import { chunkOutput, ElementFunctionComponentType } from './type'
-
-const ElementSelectionContainer = styled.div`
-	width: 100%;
-`
+import { componentPackages } from './index'
+import { DragComponentContext } from '../../context/DragComponentContext'
 
 const Selection = styled.div`
 	padding: 10px;
@@ -22,10 +17,6 @@ const SelectionMain = styled.div`
 	grid-gap: 10px;
 `
 
-interface ElementSelectionProps {
-	pickElement?(element: ElementFunctionComponentType): void
-}
-
 const ElementDisplayAround = styled.div`
 	padding: 10px;
 	background-color: #f0f0f0;
@@ -38,50 +29,40 @@ const ElementDisplayAround = styled.div`
 `
 
 /**
- * @description 将所有可以选择的组件渲染出来
- * @author onecirckoooooo
- * @date 2023/01/26 15:11
+ * 将所有可以选择的组件渲染出来
  */
-const ElementSelection: React.FC<ElementSelectionProps> = ({ pickElement }) => {
-	const [needRenderElements, setNeedRenderElements] = useState<chunkOutput[]>([])
-
-	useEffect(() => {
-		elementBucket.forEach((bucketItem) => {
-			bucketItem.key = crypto.randomUUID()
-		})
-		setNeedRenderElements(
-			elementBucket
-				.filter((item) => item.elements.length !== 0) //筛选出含有子元素的容器元素
-				.map((item) => {
-					//给每一项element绑定unikey
-					item.elements.forEach((element) => {
-						element.defaultAppendProps.elementKey = crypto.randomUUID()
-					})
-					return item
-				})
-		)
-	}, [])
-
-	const renderGroupElements = () => {
-		return needRenderElements.map((item) => {
-			return (
-				<Selection key={item.key}>
-					<SelectionName>{item.name}</SelectionName>
-					<SelectionMain>
-						{item.elements.map((Element) => {
+const ElementSelection = () => {
+	return (
+		<DragComponentContext.Consumer>
+			{({ setCurrentDragComponent }) => {
+				return (
+					<>
+						{componentPackages.map((componentPkg) => {
 							return (
-								<ElementDisplayAround key={Element.defaultAppendProps.elementKey} onClick={() => pickElement && pickElement(Element)}>
-									{Element.defaultAppendProps.componentName}
-								</ElementDisplayAround>
+								<Selection key={componentPkg.packageName.toString()}>
+									<SelectionName>{componentPkg.packageName}</SelectionName>
+									<SelectionMain>
+										{componentPkg.components.map((component) => {
+											return (
+												<ElementDisplayAround
+													key={component.componentRenderConfig.componentName.toString()}
+													onClick={() => {
+														component && setCurrentDragComponent(component)
+													}}
+												>
+													{component.componentRenderConfig.componentName}
+												</ElementDisplayAround>
+											)
+										})}
+									</SelectionMain>
+								</Selection>
 							)
 						})}
-					</SelectionMain>
-				</Selection>
-			)
-		})
-	}
-
-	return <ElementSelectionContainer>{renderGroupElements()}</ElementSelectionContainer>
+					</>
+				)
+			}}
+		</DragComponentContext.Consumer>
+	)
 }
 
 export default ElementSelection

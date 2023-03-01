@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { BsChevronDoubleRight as MenuCollapseRight, BsChevronDoubleLeft as MenuCollapseLeft } from 'react-icons/bs'
-import { SelectElement } from '../../../App'
 import { PanelContainer } from '../sharedStyled'
-import DataItem from './DataItem'
-import { DataItemContainer, DataItemEdit, DataItemTitle, ElementKey, RightCollapseButton } from './styled'
+import { RightCollapseButton } from './styled'
+import { DragComponentContext } from '../../../context/DragComponentContext'
 
 export type ItemUnit = 'px' | '%' | ''
 
@@ -16,18 +15,18 @@ export type ItemAttributes = {
 }
 
 export type RightProps = {
-	itemAttributes: ItemAttributes[]
-	selectElement: SelectElement | null
-	editValue: (
-		event: React.FormEvent<HTMLInputElement>,
-		itemObj: { itemTitle: string; itemValue: string; itemUnit: ItemUnit },
-		preItemAttributes: ItemAttributes[],
-		elementKey?: string,
-		elementType?: 'container' | 'inline'
-	) => void
+	// itemAttributes: ItemAttributes[]
+	// selectElement: SelectElement | null
+	// editValue: (
+	// 	event: React.FormEvent<HTMLInputElement>,
+	// 	itemObj: { itemTitle: string; itemValue: string; itemUnit: ItemUnit },
+	// 	preItemAttributes: ItemAttributes[],
+	// 	elementKey?: string,
+	// 	elementType?: 'container' | 'inline'
+	// ) => void
 }
 
-const Right: React.FC<RightProps> = ({ itemAttributes, selectElement, editValue }) => {
+const Right: React.FC<RightProps> = () => {
 	const [isCollapse, setIsCollapse] = useState(false)
 
 	return (
@@ -49,18 +48,24 @@ const Right: React.FC<RightProps> = ({ itemAttributes, selectElement, editValue 
 					/>
 				)}
 			</RightCollapseButton>
-			<>
-				<ElementKey>容器key: {selectElement?.key}</ElementKey>
-				{itemAttributes.map((item) => (
-					<>
-						<DataItem
-							{...item}
-							onEditValue={(event, itemObj, preItemAttributes) => editValue(event, itemObj, itemAttributes, selectElement?.key, selectElement?.type)}
-							preItemAttributes={itemAttributes}
-						/>
-					</>
-				))}
-			</>
+			<DragComponentContext.Consumer>
+				{({ currentDragComponent }) => {
+					return (
+						<>
+							{currentDragComponent?.componentRenderConfig.componentName}
+							{/*<ElementKey>容器key: {selectElement?.key}</ElementKey>*/}
+							{/*{itemAttributes.map((item) => (*/}
+							{/*	<DataItem*/}
+							{/*		{...item}*/}
+							{/*		onEditValue={(event, itemObj, preItemAttributes) => editValue(event, itemObj, itemAttributes, selectElement?.key, selectElement?.type)}*/}
+							{/*		preItemAttributes={itemAttributes}*/}
+							{/*	/>*/}
+							{/*))}*/}
+							{/*)*/}
+						</>
+					)
+				}}
+			</DragComponentContext.Consumer>
 		</PanelContainer>
 	)
 }

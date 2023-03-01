@@ -1,10 +1,10 @@
-import { buildBaseProps } from '../..'
-import { ElementFunctionComponentType } from '../../type'
+import { createDragComponent } from '../../../../Encapsulator'
 
-const Test: ElementFunctionComponentType = () => {
+const Test = () => {
 	return <span>测试组件</span>
 }
 
-Test.defaultAppendProps = buildBaseProps('inline', '测试')
-
-export default Test
+export default createDragComponent(Test, {
+	componentName: '测试组件',
+	isContainer: false,
+})

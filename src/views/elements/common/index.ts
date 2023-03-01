@@ -1,10 +1,8 @@
 import Text from './Text/Text'
+import { buildComponentPackage } from '../index'
 import Test from './Test/Test'
-import { chunkOutput } from '../type'
 
-const output: chunkOutput = {
-	name: '常用组件',
-	elements: [Text, Test],
-}
-
-export default output
+export default buildComponentPackage({
+	packageName: '常用组件',
+	components: [Text, Test],
+})

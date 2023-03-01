@@ -1,10 +1,12 @@
-import { buildBaseProps } from '../..'
-import { ElementFunctionComponentType } from '../../type'
+import { createDragComponent } from '../../../../Encapsulator'
 
-const Text: ElementFunctionComponentType = () => {
+const Text = () => {
 	return <span>文本组件</span>
 }
 
-Text.defaultAppendProps = buildBaseProps('inline', '文本组件')
+// Text.defaultAppendProps = buildBaseProps('inline', '文本组件')
 
-export default Text
+export default createDragComponent(Text, {
+	componentName: '文本组件',
+	isContainer: false,
+})

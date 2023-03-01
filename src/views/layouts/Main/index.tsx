@@ -2,7 +2,7 @@ import React from 'react'
 import { MainContainer, MainScreen } from './styled'
 
 interface MainProps {
-	children?: JSX.Element | JSX.Element[] | null
+	children?: React.ReactNode
 }
 
 const Main: React.FC<MainProps> = ({ children }) => {
