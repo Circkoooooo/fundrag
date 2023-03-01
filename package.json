@@ -6,7 +6,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "fix": "npx prettier --write .",
-    "test": "ject",
+    "test": "node scripts/test.js",
     "test:coverage": "jest --coverage"
   },
   "eslintConfig": {
