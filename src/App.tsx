@@ -7,6 +7,7 @@ import Right from './views/layouts/Right'
 import ElementSelection from './views/elements/ElementSelection'
 import { DragComponent } from './encapsulator'
 import { DragComponentContext } from './context/DragComponentContext'
+import { componentUniqueKey } from './utils/key'
 
 const Background = styled.div`
 	width: 100%;
@@ -34,7 +35,7 @@ function App() {
 			setDragComponentState(newDragComponent)
 			setDragComponentTreeRoot([...dragComponentTreeRoot, newDragComponent])
 		} else {
-			const newDrag = Object.assign({ ...dragComponentState })
+			const newDrag = { ...dragComponentState }
 			newDrag.children.appendChild(newDragComponent)
 			setDragComponentState(newDrag)
 		}
@@ -43,7 +44,15 @@ function App() {
 	const renderDragComponents = () => {
 		if (!dragComponentState) return null
 		const { children, isContainer } = dragComponentState
-		return <dragComponentState.realNode>{isContainer && children.value.map((child) => <child.realNode />)}</dragComponentState.realNode>
+
+		return (
+			<dragComponentState.realNode>
+				{isContainer &&
+					children.value.map((child) => {
+						return <child.realNode key={componentUniqueKey()} />
+					})}
+			</dragComponentState.realNode>
+		)
 	}
 
 	// const [appendElements, setAppendElements] = useState<RenderedElementsType<DefaultAppendProps, 'inline'>[]>([])

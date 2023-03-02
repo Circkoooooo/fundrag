@@ -10,6 +10,6 @@ const Linear: React.FC<LinearProps> = ({ children }) => {
 }
 
 export default createDragComponent(Linear, {
-	isContainer: false,
+	isContainer: true,
 	componentName: '线性组件',
 })
