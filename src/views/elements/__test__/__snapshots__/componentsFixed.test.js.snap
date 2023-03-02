@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component fixed ElementSelection 1`] = `
+Array [
+  <div
+    className="sc-bcXHqe iZPgNH"
+  >
+    <div
+      className="sc-gswNZR kRGSUb"
+    >
+      常用组件
+    </div>
+    <div
+      className="sc-dkrFOg kQmwrY"
+    >
+      <div
+        className="sc-hLBbgP daeFSo"
+        onClick={[Function]}
+      >
+        文本组件
+      </div>
+      <div
+        className="sc-hLBbgP daeFSo"
+        onClick={[Function]}
+      >
+        测试组件
+      </div>
+    </div>
+  </div>,
+  <div
+    className="sc-bcXHqe iZPgNH"
+  >
+    <div
+      className="sc-gswNZR kRGSUb"
+    >
+      布局组件
+    </div>
+    <div
+      className="sc-dkrFOg kQmwrY"
+    >
+      <div
+        className="sc-hLBbgP daeFSo"
+        onClick={[Function]}
+      >
+        线性组件
+      </div>
+    </div>
+  </div>,
+]
+`;
