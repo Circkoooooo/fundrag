@@ -4,7 +4,7 @@ import { DragComponent } from '../encapsulator'
 interface DragComponentContextValue {
 	currentDragComponent: DragComponent | null
 
-	setCurrentDragComponent(newDragComponent: DragComponent): void
+	setCurrentDragComponent(newDragComponent: DragComponent | null): void
 }
 
 export const dragComponentContextValue: DragComponentContextValue = {

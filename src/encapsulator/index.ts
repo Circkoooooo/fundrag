@@ -16,8 +16,8 @@ export type DragComponent = {
 	children: {
 		value: DragComponent[]
 		appendChild: (dragComponent: DragComponent) => void
-	},
-	key?:string
+	}
+	key?: string
 }
 
 const childrenConfig = () => {
@@ -46,4 +46,14 @@ export function createDragComponent(RealNode: RealNodeType, config: CreateDragCo
 		},
 		children: childrenConfig(),
 	}
+}
+
+export function cloneDragComponent(dragComponentFunctionComponent: DragComponent, key: string): DragComponent {
+	const { RealNode, isContainer } = dragComponentFunctionComponent
+	const DragComponentClone = createDragComponent(RealNode, {
+		isContainer,
+		componentName: dragComponentFunctionComponent.componentRenderConfig.componentName,
+	})
+	DragComponentClone.key = key
+	return DragComponentClone
 }
