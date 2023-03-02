@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ClickEventElementType } from './views/elements/layout/types'
 import Left from './views/layouts/Left'
@@ -27,17 +27,17 @@ function App() {
 
 	// //判断当前的dragComponentState是否为null，如果为null则往screen中渲染。如果不是null，则往其中来渲染
 	// 点击左侧不改变当前component
-
 	//如果state为null说明未选中component，则赋值到state中
 	//否则往当前state的component中渲染children
 	const selectDragComponent = (newDragComponent: DragComponent) => {
+		const newDragComponentClone = { ...newDragComponent, ...{ key: componentUniqueKey() } }
 		if (dragComponentState === null) {
-			setDragComponentState(newDragComponent)
+			setDragComponentState(newDragComponentClone)
 			setDragComponentTreeRoot([...dragComponentTreeRoot, newDragComponent])
 		} else {
-			const newDrag = { ...dragComponentState }
-			newDrag.children.appendChild(newDragComponent)
-			setDragComponentState(newDrag)
+			const cloneDragComponent = { ...dragComponentState }
+			cloneDragComponent.children.appendChild(newDragComponentClone)
+			setDragComponentState(cloneDragComponent)
 		}
 	}
 
@@ -46,12 +46,12 @@ function App() {
 		const { children, isContainer } = dragComponentState
 
 		return (
-			<dragComponentState.realNode>
+			<dragComponentState.RealNode>
 				{isContainer &&
 					children.value.map((child) => {
-						return <child.realNode key={componentUniqueKey()} />
+						return <child.RealNode key={child.key} />
 					})}
-			</dragComponentState.realNode>
+			</dragComponentState.RealNode>
 		)
 	}
 

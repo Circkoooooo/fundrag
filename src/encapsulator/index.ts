@@ -5,10 +5,10 @@ type CreateDragComponentConfig = {
 	componentName: string
 }
 
-export type RealNode = React.ComponentType<any>
+export type RealNodeType = React.ComponentType<any>
 
 export type DragComponent = {
-	realNode: RealNode
+	RealNode: RealNodeType
 	isContainer: boolean
 	componentRenderConfig: {
 		componentName: string
@@ -16,7 +16,8 @@ export type DragComponent = {
 	children: {
 		value: DragComponent[]
 		appendChild: (dragComponent: DragComponent) => void
-	}
+	},
+	key?:string
 }
 
 const childrenConfig = () => {
@@ -31,15 +32,14 @@ const childrenConfig = () => {
 /**
  * 返回生成的一个DragComponent对象
  */
-export function createDragComponent(realNode: RealNode, config: CreateDragComponentConfig): DragComponent {
+export function createDragComponent(RealNode: RealNodeType, config: CreateDragComponentConfig): DragComponent {
 	const { isContainer, componentName } = config
 
 	if (config.isContainer === undefined) {
 		console.warn("has not assign a value to 'isContainer', it will be the default value: false")
 	}
-
 	return {
-		realNode,
+		RealNode,
 		isContainer: isContainer as boolean,
 		componentRenderConfig: {
 			componentName,
