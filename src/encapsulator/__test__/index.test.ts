@@ -1,9 +1,11 @@
-import { createDragComponent } from '../index'
 import React from 'react'
+import { createDragComponent } from '..'
 
 describe('encapsulate react component to drag component', () => {
 	it('encapsulate a instance', () => {
-		const realNode = React.createElement('div', {}, '123')
+		const realNode = () => {
+			return React.createElement('div', {}, '123')
+		}
 
 		let dragComponent = createDragComponent(realNode, {
 			isContainer: false,

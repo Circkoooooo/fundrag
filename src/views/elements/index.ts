@@ -1,4 +1,4 @@
-import { DragComponent } from '../../Encapsulator'
+import { DragComponent } from '../../encapsulator'
 import layout from './layout'
 import common from './common'
 

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { createDragComponent } from '../../../../Encapsulator'
+import { createDragComponent } from '../../../../encapsulator'
 
 type LinearProps = {
 	children: ReactNode

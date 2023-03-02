@@ -1,4 +1,4 @@
-import { createDragComponent } from '../../../../Encapsulator'
+import { createDragComponent } from '../../../../encapsulator'
 
 const Text = () => {
 	return <span>文本组件</span>

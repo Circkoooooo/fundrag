@@ -5,7 +5,7 @@ import Left from './views/layouts/Left'
 import Main from './views/layouts/Main'
 import Right from './views/layouts/Right'
 import ElementSelection from './views/elements/ElementSelection'
-import { DragComponent } from './Encapsulator'
+import { DragComponent } from './encapsulator'
 import { DragComponentContext } from './context/DragComponentContext'
 
 const Background = styled.div`

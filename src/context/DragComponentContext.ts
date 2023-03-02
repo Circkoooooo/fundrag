@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { DragComponent } from '../Encapsulator'
+import { DragComponent } from '../encapsulator'
 
 interface DragComponentContextValue {
 	currentDragComponent: DragComponent | null
