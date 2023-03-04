@@ -1,6 +1,7 @@
+import React from 'react'
 import styled from 'styled-components'
-import { componentPackages } from './index'
-import { DragComponentContext } from '../../context/DragComponentContext'
+import { DragComponentPackage } from './index'
+import { DragComponent } from '../../encapsulator'
 
 const Selection = styled.div`
 	padding: 10px;
@@ -28,40 +29,39 @@ const ElementDisplayAround = styled.div`
 	overflow: hidden;
 `
 
+interface ElementSelectionProps {
+	onItemClick: (component: DragComponent) => void
+	componentPackages: DragComponentPackage[]
+}
+
 /**
  * 将所有可以选择的组件渲染出来
  */
-const ElementSelection = () => {
+const ElementSelection: React.FC<ElementSelectionProps> = ({ onItemClick, componentPackages }) => {
 	return (
-		<DragComponentContext.Consumer>
-			{({ setCurrentDragComponent }) => {
+		<>
+			{componentPackages.map((componentPkg) => {
 				return (
-					<>
-						{componentPackages.map((componentPkg) => {
-							return (
-								<Selection key={componentPkg.packageName.toString()}>
-									<SelectionName>{componentPkg.packageName}</SelectionName>
-									<SelectionMain>
-										{componentPkg.components.map((component) => {
-											return (
-												<ElementDisplayAround
-													key={component.componentRenderConfig.componentName.toString()}
-													onClick={() => {
-														component && setCurrentDragComponent(component)
-													}}
-												>
-													{component.componentRenderConfig.componentName}
-												</ElementDisplayAround>
-											)
-										})}
-									</SelectionMain>
-								</Selection>
-							)
-						})}
-					</>
+					<Selection key={componentPkg.packageName.toString()}>
+						<SelectionName>{componentPkg.packageName}</SelectionName>
+						<SelectionMain>
+							{componentPkg.components.map((component) => {
+								return (
+									<ElementDisplayAround
+										key={component.componentRenderConfig.componentName.toString()}
+										onClick={() => {
+											component && onItemClick(component)
+										}}
+									>
+										{component.componentRenderConfig.componentName}
+									</ElementDisplayAround>
+								)
+							})}
+						</SelectionMain>
+					</Selection>
 				)
-			}}
-		</DragComponentContext.Consumer>
+			})}
+		</>
 	)
 }
 
