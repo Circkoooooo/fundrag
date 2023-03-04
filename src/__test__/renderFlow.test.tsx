@@ -4,7 +4,7 @@ import Left from '../views/layouts/Left'
 import Main from '../views/layouts/Main'
 import Linear from '../views/elements/layout/Linear/Linear'
 import Test from '../views/elements/common/Test/Test'
-import Text from "../views/elements/common/Text/Text";
+import Text from '../views/elements/common/Text/Text'
 
 describe('ensure correct process ', () => {
 	const component = renderer.create(<App />)
