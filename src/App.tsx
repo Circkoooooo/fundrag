@@ -7,6 +7,7 @@ import ElementSelection from './views/elements/ElementSelection'
 import { cloneDragComponent, DragComponent } from './encapsulator'
 import { DragComponentContext } from './context/DragComponentContext'
 import { componentUniqueKey } from './utils/key'
+import { componentPackages } from './views/elements'
 
 const Background = styled.div`
 	width: 100%;
@@ -49,7 +50,7 @@ function App() {
 			return (
 				<dragComponent.RealNode key={dragComponent.key}>
 					{dragComponent.children.value.map((child) => {
-						return <child.RealNode key={dragComponent.key} />
+						return <child.RealNode key={child.key} />
 					})}
 				</dragComponent.RealNode>
 			)
@@ -75,7 +76,7 @@ function App() {
 				}}
 			>
 				<Left>
-					<ElementSelection />
+					<ElementSelection onItemClick={(dragComponent) => selectDragComponent(dragComponent)} componentPackages={componentPackages} />
 				</Left>
 				<Main>{renderDragComponents()}</Main>
 				<Right />
