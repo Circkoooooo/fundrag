@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ensure circlate rendering render component in main 1`] = `
+Array [
+  <Linear />,
+]
+`;
+
+exports[`ensure circlate rendering render component in main 2`] = `
+Array [
+  <Linear>
+    <Test />
+  </Linear>,
+]
+`;
+
+exports[`ensure circlate rendering render component in main 3`] = `
+Array [
+  <Linear>
+    <Test />
+    <Text />
+  </Linear>,
+]
+`;
+
+exports[`ensure correct process  load left components 1`] = `
+Array [
+  Object {
+    "components": Array [
+      Object {
+        "RealNode": [Function],
+        "children": Object {
+          "appendChild": [Function],
+          "value": Array [],
+        },
+        "componentRenderConfig": Object {
+          "componentName": "文本组件",
+        },
+        "isContainer": false,
+      },
+      Object {
+        "RealNode": [Function],
+        "children": Object {
+          "appendChild": [Function],
+          "value": Array [],
+        },
+        "componentRenderConfig": Object {
+          "componentName": "测试组件",
+        },
+        "isContainer": false,
+      },
+    ],
+    "packageName": "常用组件",
+  },
+  Object {
+    "components": Array [
+      Object {
+        "RealNode": [Function],
+        "children": Object {
+          "appendChild": [Function],
+          "value": Array [],
+        },
+        "componentRenderConfig": Object {
+          "componentName": "线性组件",
+        },
+        "isContainer": true,
+      },
+    ],
+    "packageName": "布局组件",
+  },
+]
+`;

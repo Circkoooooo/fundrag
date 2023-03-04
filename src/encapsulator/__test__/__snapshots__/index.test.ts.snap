@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`encapsulate react component to drag component encapsulate a instance 1`] = `
+Object {
+  "RealNode": [Function],
+  "children": Object {
+    "appendChild": [Function],
+    "value": Array [],
+  },
+  "componentRenderConfig": Object {
+    "componentName": "线性组件",
+  },
+  "isContainer": false,
+}
+`;
+
+exports[`encapsulate react component to drag component encapsulate a instance 2`] = `
+Object {
+  "RealNode": [Function],
+  "children": Object {
+    "appendChild": [Function],
+    "value": Array [],
+  },
+  "componentRenderConfig": Object {
+    "componentName": "线性组件",
+  },
+  "isContainer": true,
+}
+`;
