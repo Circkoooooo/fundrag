@@ -5,10 +5,9 @@ import { DragComponent } from '../../../encapsulator'
 
 interface MainProps {
 	dragComponentTree: DragComponent[]
-	children?: React.ReactNode
 }
 
-const Main: React.FC<MainProps> = ({ children, dragComponentTree }) => {
+const Main: React.FC<MainProps> = ({ dragComponentTree }) => {
 	//TODO: state来管理当前已渲染的元素。
 	//渲染出组件的逻辑 嵌套
 	const renderDragComponents = () => {
@@ -34,6 +33,7 @@ const Main: React.FC<MainProps> = ({ children, dragComponentTree }) => {
 			</>
 		)
 	}
+
 	return (
 		<DragComponentContext.Consumer>
 			{({ setCurrentDragComponent }) => {
@@ -45,10 +45,6 @@ const Main: React.FC<MainProps> = ({ children, dragComponentTree }) => {
 			}}
 		</DragComponentContext.Consumer>
 	)
-}
-
-Main.defaultProps = {
-	children: null,
 }
 
 export default Main
