@@ -28,40 +28,50 @@ describe('ensure correct process ', () => {
 	})
 })
 
-describe('ensure circlate rendering', () => {
+describe('ensure circulate rendering', () => {
 	const component = renderer.create(<App />)
 	const instance = component.root
 	const leftPanel = instance.findByType(Left)
 	const mainPanel = instance.findByType(Main)
+	let elementSelection = leftPanel.props.children.props
+	let linearComponentChildren: any = null
 
-	it('render component in main', () => {
+	it('render components in main', () => {
 		//render container component
-		const elementSelection$1 = leftPanel.props.children.props
 		act(() => {
-			elementSelection$1.onItemClick(Linear)
+			elementSelection.onItemClick(Linear)
 		})
-		const linearComponentChildren$1 = mainPanel.props.children.props.children[0].props.children
-		expect(linearComponentChildren$1).toBe(undefined)
+		linearComponentChildren = mainPanel.props.children.props.children[0].props.children
+		expect(linearComponentChildren).toBe(undefined)
 		expect(mainPanel.props.children.props.children).toMatchSnapshot()
 
 		//render non-container component to container component
-		const elementSelection$2 = leftPanel.props.children.props
+		elementSelection = leftPanel.props.children.props
 		act(() => {
-			elementSelection$2.onItemClick(Test)
+			elementSelection.onItemClick(Test)
 		})
-		const linearComponentChildren$2 = mainPanel.props.children.props.children[0].props.children
-		expect(linearComponentChildren$2.length).toBe(1)
+		linearComponentChildren = mainPanel.props.children.props.children[0].props.children
+		expect(linearComponentChildren.length).toBe(1)
 
 		//rendered components tree
 		expect(mainPanel.props.children.props.children).toMatchSnapshot()
 
 		//render non-container component to container component
 		act(() => {
-			elementSelection$2.onItemClick(Text)
+			elementSelection.onItemClick(Text)
 		})
-		const linearComponentChildren$3 = mainPanel.props.children.props.children[0].props.children
-		expect(linearComponentChildren$3.length).toBe(2)
+
+		linearComponentChildren = mainPanel.props.children.props.children[0].props.children
+		expect(linearComponentChildren.length).toBe(2)
 
 		expect(mainPanel.props.children.props.children).toMatchSnapshot()
+	})
+
+	it('render null', () => {
+		act(() => {
+			elementSelection.onItemClick(null)
+		})
+		linearComponentChildren = mainPanel.props.children.props.children[0].props.children
+		expect(linearComponentChildren.length).toBe(2)
 	})
 })
