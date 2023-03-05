@@ -1,38 +1,32 @@
 import renderer, { act } from 'react-test-renderer'
 import App from '../App'
 import Left from '../views/layouts/Left'
-import Main from '../views/layouts/Main'
-import Linear from '../views/elements/layout/Linear/Linear'
-import Test from '../views/elements/common/Test/Test'
 import ElementSelection from '../views/elements/ElementSelection'
+import Main from '../views/layouts/Main'
 import { MainScreen } from '../views/layouts/Main/styled'
-import root from '../index'
+import Linear from '../views/elements/layout/Linear/Linear'
 
-describe('ensure circulate rendering', () => {
+describe('change select component after render', () => {
 	const component = renderer.create(<App />)
 	const instance = component.root
 	const left = instance.findByType(Left)
 	const elementSelection = left.findByType(ElementSelection)
 	const main = instance.findByType(Main)
-	const mainScreen = main.findByType(MainScreen)
 
-	it('render component', () => {
+	it('cancel select', () => {
+		let mainScreen = main.findByType(MainScreen)
 		act(() => {
 			elementSelection.props.onItemClick(Linear)
 		})
-
-		expect(mainScreen.props.children).toMatchSnapshot()
+		mainScreen = main.findByType(MainScreen)
 
 		act(() => {
-			elementSelection.props.onItemClick(Test)
+			mainScreen.props.onClick()
 		})
 
-		expect(mainScreen.props.children).toMatchSnapshot()
-	})
-
-	it('render null', () => {
+		mainScreen = main.findByType(MainScreen)
 		act(() => {
-			elementSelection.props.onItemClick(null)
+			elementSelection.props.onItemClick(Linear)
 		})
 		expect(mainScreen.props.children).toMatchSnapshot()
 	})
