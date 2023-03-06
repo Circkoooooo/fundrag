@@ -8,7 +8,7 @@ type LinearProps = {
 }
 
 const Linear: React.FC<LinearProps> = ({ children, onClick }) => {
-	return <LinearContainer onClick={() => onClick && onClick()}>{children}</LinearContainer>
+	return <>{children}</>
 }
 
 export default createDragComponent(Linear, {
