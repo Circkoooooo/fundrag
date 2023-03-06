@@ -9,7 +9,7 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ dragComponentTree }) => {
 	const isRendered = useRef<boolean>(false)
-	const selectFnCache = useRef(0)
+	const selectFnCache = useRef<DragComponent | null>(null)
 
 	//circulate rendering and bind click event
 	const renderDragComponents = (selectFn: (dragComponent: DragComponent) => void) => {
@@ -20,7 +20,7 @@ const Main: React.FC<MainProps> = ({ dragComponentTree }) => {
 						key={dragComponent.key}
 						onSelectFn={() => {
 							selectFn(dragComponent)
-							selectFnCache.current = 1
+							selectFnCache.current = dragComponent
 						}}
 					/>
 				)
@@ -30,10 +30,14 @@ const Main: React.FC<MainProps> = ({ dragComponentTree }) => {
 				<dragComponent.RealNode
 					key={dragComponent.key}
 					onSelectFn={() => {
-						if (selectFnCache.current !== 0) {
-							selectFnCache.current = 0
+						// 1.child  2.parent
+						if (selectFnCache.current !== null) {
+							selectFn(selectFnCache.current)
+							if (dragComponent.key !== selectFnCache.current.key) {
+								selectFnCache.current = null
+							}
 						} else {
-							selectFnCache.current = 1
+							selectFnCache.current = dragComponent
 							selectFn(dragComponent)
 						}
 					}}
