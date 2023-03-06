@@ -54,6 +54,7 @@
 		"react/jsx-key": "off",
 		"no-nested-ternary": "off",
 		"no-unused-expressions": "off",
-		"react/jsx-no-constructed-context-values": "off"
+		"react/jsx-no-constructed-context-values": "off",
+		"no-underscore-dangle": "off"
 	}
 }
