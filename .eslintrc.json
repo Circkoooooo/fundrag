@@ -55,6 +55,7 @@
 		"no-nested-ternary": "off",
 		"no-unused-expressions": "off",
 		"react/jsx-no-constructed-context-values": "off",
-		"no-underscore-dangle": "off"
+		"no-underscore-dangle": "off",
+		"react/jsx-no-useless-fragment": "off"
 	}
 }
