@@ -53,6 +53,7 @@ const Right: React.FC<RightProps> = () => {
 					return (
 						<>
 							{currentDragComponent?.componentRenderConfig.componentName}
+							{currentDragComponent?.key}
 							{/*<ElementKey>容器key: {selectElement?.key}</ElementKey>*/}
 							{/*{itemAttributes.map((item) => (*/}
 							{/*	<DataItem*/}
