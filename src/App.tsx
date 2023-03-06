@@ -20,24 +20,28 @@ const Background = styled.div`
 
 //TODO:编写每个每个组件的逻辑单元测试，要求点击为渲染的元素可以渲染内容，点击已渲染的元素切换state等等。
 function App() {
-	const [dragComponentState, setDragComponentState] = useState<DragComponent | null>(null)
+	const [currentDragComponent, setCurrentDragComponent] = useState<DragComponent | null>(null)
 	const [dragComponentTree, setDragComponentTree] = useState<DragComponent[]>([])
 
-	//将选中的组件添加到状态中。
-	//需要clone出新对象保证每个元素渲染出不同的实例，可优化。
-	const selectDragComponent = (newDragComponent: DragComponent | null) => {
-		if (newDragComponent === null) {
-			setDragComponentState(null)
+	//render component to target component
+	const selectDragComponent = (__newDragComponent: DragComponent) => {
+		const newDragComponent = cloneDragComponent(__newDragComponent, componentUniqueKey())
+
+		if (currentDragComponent === null) {
+			setDragComponentTree([...dragComponentTree, newDragComponent])
 		} else {
-			const newDragComponentClone = cloneDragComponent(newDragComponent, componentUniqueKey())
-			if (dragComponentState === null) {
-				setDragComponentState(newDragComponentClone)
-				setDragComponentTree([...dragComponentTree, newDragComponentClone])
-			} else {
-				const dragComponentClone = { ...dragComponentState }
-				dragComponentClone.children.appendChild(newDragComponentClone)
-				setDragComponentState(dragComponentClone)
-			}
+			const dragComponentClone = { ...currentDragComponent }
+			dragComponentClone.children.appendChild(newDragComponent)
+			setCurrentDragComponent(dragComponentClone)
+		}
+	}
+
+	//change target component
+	const changeCurrentDragComponent = (newDragComponent: DragComponent | null) => {
+		if (newDragComponent === null) {
+			setCurrentDragComponent(null)
+		} else {
+			setCurrentDragComponent(newDragComponent)
 		}
 	}
 
@@ -45,10 +49,11 @@ function App() {
 		<Background>
 			<DragComponentContext.Provider
 				value={{
-					currentDragComponent: dragComponentState,
+					currentDragComponent,
 					setCurrentDragComponent(newDragComponent: DragComponent | null) {
-						selectDragComponent(newDragComponent)
+						changeCurrentDragComponent(newDragComponent)
 					},
+					selectDragComponent,
 				}}
 			>
 				<Left>
