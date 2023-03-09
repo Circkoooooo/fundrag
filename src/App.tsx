@@ -16,7 +16,6 @@ const Background = styled.div`
 	display: flex;
 `
 
-//TODO:编写每个每个组件的逻辑单元测试，要求点击为渲染的元素可以渲染内容，点击已渲染的元素切换state等等。
 function App() {
 	const [currentDragComponent, setCurrentDragComponent] = useState<DragComponent | null>(null)
 	const [dragComponentTree, setDragComponentTree] = useState<DragComponent[]>([])
@@ -28,6 +27,7 @@ function App() {
 		if (currentDragComponent === null) {
 			setDragComponentTree([...dragComponentTree, newDragComponent])
 		} else {
+			//render to children of currentDragComponent
 			const dragComponentClone = { ...currentDragComponent }
 			dragComponentClone.children.appendChild(newDragComponent)
 			setCurrentDragComponent(dragComponentClone)
