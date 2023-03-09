@@ -1,23 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ensure circulate rendering render children 1`] = `
+<React.Fragment>
+  <component
+    onSelectFn={[Function]}
+  >
+    <component
+      onSelectFn={[Function]}
+    />
+  </component>
+  <component
+    onSelectFn={[Function]}
+  />
+  <component
+    onSelectFn={[Function]}
+  />
+</React.Fragment>
+`;
+
 exports[`ensure circulate rendering render component 1`] = `
 <React.Fragment>
-  <Linear />
+  <component
+    onSelectFn={[Function]}
+  />
 </React.Fragment>
 `;
 
 exports[`ensure circulate rendering render component 2`] = `
 <React.Fragment>
-  <Linear>
-    <Test />
-  </Linear>
-</React.Fragment>
-`;
-
-exports[`ensure circulate rendering render null 1`] = `
-<React.Fragment>
-  <Linear>
-    <Test />
-  </Linear>
+  <component
+    onSelectFn={[Function]}
+  />
+  <component
+    onSelectFn={[Function]}
+  />
 </React.Fragment>
 `;

@@ -29,10 +29,20 @@ describe('ensure circulate rendering', () => {
 		expect(mainScreen.props.children).toMatchSnapshot()
 	})
 
-	it('render null', () => {
+	it('render children', () => {
 		act(() => {
-			elementSelection.props.onItemClick(null)
+			elementSelection.props.onItemClick(Linear)
 		})
+
+		const linear = mainScreen.props.children.props.children[0]
+		act(() => {
+			linear.props.onSelectFn()
+		})
+
+		act(() => {
+			elementSelection.props.onItemClick(Test)
+		})
+
 		expect(mainScreen.props.children).toMatchSnapshot()
 	})
 })

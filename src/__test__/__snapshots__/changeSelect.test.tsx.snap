@@ -2,7 +2,11 @@
 
 exports[`change select component after render cancel select 1`] = `
 <React.Fragment>
-  <Linear />
-  <Linear />
+  <component
+    onSelectFn={[Function]}
+  />
+  <component
+    onSelectFn={[Function]}
+  />
 </React.Fragment>
 `;
